@@ -1,0 +1,77 @@
+
+
+.slider-container {
+	display: inline-block;
+	width: 42rem;
+	white-space: nowrap;
+	overflow: hidden;
+	position: relative;
+	font-size: 0; // Stops whitespace between inline-block elements
+		img {
+			width: 100%;
+			height: auto;
+			vertical-align: middle;
+		}
+}
+
+.slider-item {
+	font-size: 1rem; // Resetting the font-size
+	white-space: normal;
+	display: inline-block;
+	right: 0;
+	position: relative;
+		> div {
+			position: absolute;
+			top: 70%;
+			width: 100%;
+			height: 30%;
+			padding: 0.5rem;
+			margin: 0;
+			color: #FFF;
+			text-align: left;
+			background-color: rgba(0,0,0,0.4);
+		}
+		p {
+			margin: 0;
+			padding: 0;
+		}
+		h1, h2, h3 {
+			background-color: transparent;
+			text-align: left;
+			padding: 0;
+			margin: 0 0 0.5rem;
+		}
+		h1 {
+			font-size: 1.3rem;
+		}
+		h2 {
+			font-size: 1.25rem;
+		}
+		h3 {
+			font-size: 1.2rem;
+		}
+}
+
+@keyframes slider {
+	12.5% {
+		right: 0%;
+	}
+	25% {
+		right: 100%;
+	}
+	37.5% {
+		right: 100%;
+	}
+	50% {
+		right: 200%;
+	}
+	62.5% {
+		right: 200%;
+	}
+	75% {
+		right: 300%;
+	}
+	87.5% {
+		right: 300%;
+	}
+}

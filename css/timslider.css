@@ -1,0 +1,14 @@
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/wamp\/www\/timslider\/lib\/sass\/base\/_body\.scss}line{font-family:\000031}}
+*, *:before, *:after { -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/wamp\/www\/timslider\/lib\/sass\/base\/_body\.scss}line{font-family:\000034}}
+body { font-size: 16px; font-family: Verdana, Arial, sans-serif; margin: 0; padding: 0; width: auto; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/wamp\/www\/timslider\/lib\/sass\/base\/_body\.scss}line{font-family:\0000311}}
+#outerWrap { width: auto; text-align: center; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/wamp\/www\/timslider\/lib\/sass\/base\/_body\.scss}line{font-family:\0000316}}
+h1.shadow { background-color: #99f2b4; margin: 0; padding: 0.216em; font-size: 5.2rem; text-align: center; font-weight: normal; text-shadow: 0px 1.2px 2.4px white; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/wamp\/www\/timslider\/lib\/sass\/base\/_images\.scss}line{font-family:\000033}}
+img { width: 300px; height: 160px; }

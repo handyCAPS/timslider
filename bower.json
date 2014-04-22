@@ -1,0 +1,23 @@
+{
+  "name": "timslider",
+  "version": "0.1.0",
+  "authors": [
+    "Tim Doppenberg <info@timdoppenberg.nl>"
+  ],
+  "description": "My own slider",
+  "main": "index.html",
+  "keywords": [
+    "slider"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.1.0"
+  }
+}

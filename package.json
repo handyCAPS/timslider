@@ -1,7 +1,7 @@
 {
   "name": "timslider",
-  "version": "0.0.0",
-  "description": "0.1.0",
+  "version": "0.1.0",
+  "description": "A vanilla js slider using css animations",
   "main": "index.html",
   "dependencies": {
     "grunt": "~0.4.4",

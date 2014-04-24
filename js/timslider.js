@@ -1,6 +1,5 @@
-/*! timslider - v0.0.0 - 2014-04-20
+/*! timslider - v0.1.0 - 2014-04-24
 * Copyright (c) 2014 ; Licensed  */
-
 
 var TimSlider = {
 
@@ -48,7 +47,7 @@ var TimSlider = {
 
 		var classString = this.container + "	{	display: inline-block; overflow: hidden; white-space: nowrap;	position: relative; font-size: 0; width: " + this.width + ";}";
 
-		classString += this.itemName + '{ display: inline-block; white-space: normal; position: relative; font-size: 1rem; right: 0; animation: ' + animString + '}';
+		classString += this.itemName + '{ display: inline-block; white-space: normal; position: relative; font-size: 1rem; right: 0; animation: ' + animString + '; -webkit-animation:' + animString + '}';
 
 		classString += this.itemName + ' img { width: 100%; height: auto; vertical-align: middle;}';
 
@@ -73,12 +72,11 @@ var TimSlider = {
 			second = slidePerc + animPerc;
 
 			if (i !== this.numItems -1) {
-				secPerc = parseInt(i + 1);
+				secPerc = parseInt(i) + 1;
 
 				kString += second + '% { right: ' + secPerc + '00% }';
 				slidePerc += steady + animPerc;
 			}
-
 
 		}
 
@@ -89,6 +87,9 @@ var TimSlider = {
 	getKeyframeString: function() {
 		var kfString = "@keyframes " + this.name + " {";
 		kfString += this.getKeyframes() + '}';
+
+		kfString += "@-webkit-keyframes " + this.name + " {";
+		kfString += this.getKeyframes() + "}";
 
 		return kfString;
 	},

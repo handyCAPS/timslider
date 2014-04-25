@@ -2,22 +2,24 @@
   "name": "timslider",
   "version": "0.1.0",
   "authors": [
-    "Tim Doppenberg <info@timdoppenberg.nl>"
+    "handyCAPS"
   ],
-  "description": "My own slider",
-  "main": "index.html",
+  "description": "A vanilla js slider. Unfinnished",
   "keywords": [
     "slider"
   ],
   "license": "MIT",
   "ignore": [
     "**/.*",
+    "**/*.html",
     "node_modules",
     "bower_components",
     "test",
-    "tests"
-  ],
-  "dependencies": {
-    "jquery": "~2.1.0"
-  }
+    "tests",
+    "img",
+    "css",
+    "lib",
+    "Gruntfile.js",
+    "package.json"
+  ]
 }

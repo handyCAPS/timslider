@@ -45,7 +45,7 @@ var TimSlider = {
 	getCss: function() {
 		var animString = this.buildAnimation();
 
-		var classString = this.container + "	{	display: inline-block; overflow: hidden; white-space: nowrap;	position: relative; font-size: 0; width: " + this.width + ";}";
+		var classString = this.container + "	{	display: inline-block; overflow: hidden; white-space: nowrap;	position: relative; font-size: 0; width: " + this.width + "; " + this.itemHeight + "}";
 
 		classString += this.itemName + '{ display: inline-block; width: 100%; white-space: normal; position: relative; font-size: 1rem; right: 0; animation: ' + animString + '; -webkit-animation:' + animString + '}';
 

@@ -1,4 +1,4 @@
-/*! timslider - v0.1.0 - 2014-04-24
+/*! timslider - v0.1.0 - 2014-04-25
 * Copyright (c) 2014 ; Licensed  */
 
 var TimSlider = {
@@ -47,11 +47,11 @@ var TimSlider = {
 
 		var classString = this.container + "	{	display: inline-block; overflow: hidden; white-space: nowrap;	position: relative; font-size: 0; width: " + this.width + ";}";
 
-		classString += this.itemName + '{ display: inline-block; white-space: normal; position: relative; font-size: 1rem; right: 0; animation: ' + animString + '; -webkit-animation:' + animString + '}';
+		classString += this.itemName + '{ display: inline-block; width: 100%; white-space: normal; position: relative; font-size: 1rem; right: 0; animation: ' + animString + '; -webkit-animation:' + animString + '}';
 
 		classString += this.itemName + ' img { width: 100%; height: auto; vertical-align: middle;}';
 
-		classString += this.slideCap + ' { position: absolute; bottom: 0; display: block; height: 30%; background-color: rgba(0,0,0,0.45); overflow: hidden; text-overflow: ellipsis; text-align: ' + this.capDir + '; color: #FFF; padding: 0.5rem;} h1, h2, h3 { margin: 0 0 0.75rem;}';
+		classString += this.slideCap + ' { position: absolute; bottom: 0; display: block; height: 30%; width: 100%; background-color: rgba(0,0,0,0.45); overflow: hidden; text-overflow: ellipsis; text-align: ' + this.capDir + '; color: #FFF; padding: 0.5rem;} h1, h2, h3 { margin: 0 0 0.75rem;}';
 
 		classString += this.getKeyframeString();
 

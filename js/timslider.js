@@ -1,4 +1,4 @@
-/*! timslider - v0.1.0 - 2014-04-25
+/*! timslider - v0.1.0 - 2014-04-26
 * Copyright (c) 2014 ; Licensed BSD-2-Clause */
 
 var TimSlider = {
@@ -12,6 +12,17 @@ var TimSlider = {
 	totalTime: function() {
 		var dur = this.slideDur * this.numItems + this.numItems * this.animDur;
 		return dur;
+	},
+
+	getCapHeight: function() {
+		var capHeight = '';
+		if (this.cMinHeight) {
+			var minHeight = this.cMinHeight;
+			capHeight = "min-height: " + minHeight + ';';
+		} else {
+			capHeight = "height:"  + this.capHeight + ';';
+		}
+		return capHeight;
 	},
 
 	getAnimArray: function () {
@@ -43,15 +54,16 @@ var TimSlider = {
 	},
 
 	getCss: function() {
-		var animString = this.buildAnimation();
+		var animString = this.buildAnimation(),
+		capHeight = this.getCapHeight();
 
-		var classString = this.container + "	{	display: inline-block; overflow: hidden; white-space: nowrap;	position: relative; font-size: 0; width: " + this.width + "; " + this.itemHeight + "}";
+		var classString = this.container + "	{	box-sizing: border-box; -moz-box-sizing: border-box; display: inline-block; overflow: hidden; white-space: nowrap;	position: relative; font-size: 0; width: " + this.width + "; height: " + this.itemHeight + "}";
 
-		classString += this.itemName + '{ display: inline-block; width: 100%; white-space: normal; position: relative; font-size: 1rem; right: 0; animation: ' + animString + '; -webkit-animation:' + animString + '}';
+		classString += this.itemName + "{	box-sizing: border-box; -moz-box-sizing: border-box; display: inline-block; width: 100%; white-space: normal; position: relative; font-size: 1rem; right: 0; animation: " + animString + "; -webkit-animation:" + animString + "}";
 
-		classString += this.itemName + ' img { width: 100%; height: auto; vertical-align: middle;}';
+		classString += this.itemName + " img {	box-sizing: border-box; -moz-box-sizing: border-box; width: 100%; height:" + this.itemHeight + "; vertical-align: middle;}";
 
-		classString += this.slideCap + ' { position: absolute; bottom: 0; display: block; height: 30%; width: 100%; background-color: ' + this.captionBg + '; overflow: hidden; text-overflow: ellipsis; text-align: ' + this.capDir + '; color: ' + this.capFColor + '; padding: 0.5rem 1rem;} h1, h2, h3, h4 { margin: 0; margin-bottom: 0.5rem;} p {padding: 0; margin: 0;}';
+		classString += this.slideCap + " {	box-sizing: border-box; -moz-box-sizing: border-box; position: absolute; bottom: 0; display: block; " + capHeight + "; width: 100%; background-color: " + this.capBgColor + "; overflow: hidden; text-align: " + this.capAlign + "; color: " + this.capFColor + "; padding: 0.5rem 1rem 1rem; overflow: hidden; text-overflow: ellipsis;} h1, h2, h3, h4 {	box-sizing: border-box; -moz-box-sizing: border-box; margin: 0; margin-bottom: 0.5rem;} p {	box-sizing: border-box; -moz-box-sizing: border-box; padding: 0; margin: 0;}";
 
 		classString += this.getKeyframeString();
 
@@ -126,15 +138,13 @@ var TimSlider = {
 		this.slideDur 	= parseInt(params.slideDuration) || 7;
 
 		// Layout options
-		this.width			= params.width					|| '48rem';
-		this.itemHeight = params.itemHeight 		|| 'auto';
-		this.capDir			=	params.captionDir 		|| 'left';
-		this.capHeight	= params.captionHeight 	|| '30%';
-		this.capFColor	= params.captionColor		|| '#FFF';
-		this.capOpac		= params.captionOpacity || '0.4';
-		this.cBgColor 	= params.captionBgColor || '0,0,0';
-
-		this.captionBg	= 'rgba(' + this.cBgColor + ',' + this.capOpac + ')';
+		this.width			= params.width						|| '100%';
+		this.itemHeight = params.itemHeight 			|| 'auto';
+		this.capAlign		=	params.captionAlign			|| 'left';
+		this.capHeight	= params.captionHeight 		|| '30%';
+		this.cMinHeight = params.captionMinHeight;
+		this.capFColor	= params.captionTextColor	|| '#FFF';
+		this.capBgColor	= params.captionBgColor 	|| 'rgba(0,0,0,0.4)';
 
 		// Getting the number of slides
 		this.numItems 	= this.countItems();

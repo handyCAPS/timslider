@@ -47,7 +47,9 @@ var TimSlider = {
 
 		var classString = this.container + "	{	display: inline-block; overflow: hidden; white-space: nowrap;	position: relative; font-size: 0; width: " + this.width + ";}";
 
-		classString += this.itemName + ', > div{ display: inline-block; width: 100%; white-space: normal; position: relative; font-size: 1rem; right: 0; animation: ' + animString + '; -webkit-animation:' + animString + '}';
+		classString += this.itemName + '{ display: inline-block; width: 100%; white-space: normal; position: relative; font-size: 1rem; right: 0; animation: ' + animString + '; -webkit-animation:' + animString + '}';
+
+		classString += this.itemName + ' > div { font-size: 1rem;}';
 
 		classString += this.itemName + ' img { width: 100%; height: auto; vertical-align: middle;}';
 

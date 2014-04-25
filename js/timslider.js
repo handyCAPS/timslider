@@ -49,11 +49,9 @@ var TimSlider = {
 
 		classString += this.itemName + '{ display: inline-block; width: 100%; white-space: normal; position: relative; font-size: 1rem; right: 0; animation: ' + animString + '; -webkit-animation:' + animString + '}';
 
-		classString += this.itemName + ' > div { font-size: 1rem;}';
-
 		classString += this.itemName + ' img { width: 100%; height: auto; vertical-align: middle;}';
 
-		classString += this.slideCap + ' { position: absolute; bottom: 0; display: block; height: 30%; width: 100%; background-color: rgba(0,0,0,0.45); overflow: hidden; text-overflow: ellipsis; text-align: ' + this.capDir + '; color: #FFF; padding: 0.5rem;} h1, h2, h3 { margin: 0 0 0.75rem;}';
+		classString += this.slideCap + ' { position: absolute; bottom: 0; display: block; height: 30%; width: 100%; background-color: ' + this.captionBg + '; overflow: hidden; text-overflow: ellipsis; text-align: ' + this.capDir + '; color: ' + this.capFColor + '; padding: 0.5rem 1rem;} h1, h2, h3, h4 { margin: 0; margin-bottom: 0.5rem;} p {padding: 0; margin: 0;}';
 
 		classString += this.getKeyframeString();
 
@@ -96,7 +94,7 @@ var TimSlider = {
 		return kfString;
 	},
 
-	placeKeyframes: function() {
+	placeStyling: function() {
 		var head = document.head || document.getElementsByTagName('head')[0],
 		css = document.createTextNode(this.getCss()),
 		styleTag = document.createElement('style');
@@ -128,8 +126,15 @@ var TimSlider = {
 		this.slideDur 	= parseInt(params.slideDuration) || 7;
 
 		// Layout options
-		this.width			= params.width			|| '48rem';
-		this.capDir			=	params.captionDir || 'left';
+		this.width			= params.width					|| '48rem';
+		this.itemHeight = params.itemHeight 		|| 'auto';
+		this.capDir			=	params.captionDir 		|| 'left';
+		this.capHeight	= params.captionHeight 	|| '30%';
+		this.capFColor	= params.captionColor		|| '#FFF';
+		this.capOpac		= params.captionOpacity || '0.4';
+		this.cBgColor 	= params.captionBgColor || '0,0,0';
+
+		this.captionBg	= 'rgba(' + this.cBgColor + ',' + this.capOpac + ')';
 
 		// Getting the number of slides
 		this.numItems 	= this.countItems();
@@ -139,7 +144,7 @@ var TimSlider = {
 		this.durationS	= this.duration.toString() + 's';
 
 		// Adding the css to the <head>
-		this.placeKeyframes();
+		this.placeStyling();
 
 	}
 };

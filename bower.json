@@ -13,11 +13,7 @@
     "**/.*",
     "**/*.html",
     "node_modules",
-    "bower_components",
-    "test",
-    "tests",
-    "img",
-    "css",
+    "bower_components"
     "lib",
     "Gruntfile.js",
     "package.json"

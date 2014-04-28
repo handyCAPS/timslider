@@ -21,6 +21,7 @@ module.exports = function(grunt) {
         dest: 'js/<%= pkg.name %>.js'
       }
     },
+
     uglify: {
       options: {
         banner: '<%= banner %>'
@@ -30,6 +31,7 @@ module.exports = function(grunt) {
         dest: 'js/<%= pkg.name %>.min.js'
       }
     },
+
     jshint: {
       options: {
         devel: true,
@@ -56,39 +58,7 @@ module.exports = function(grunt) {
         src: ['lib/**/*.js']
       }
     },
-    sass: {
-      dev: {
-        options: {
-          debugInfo: true,
-          style: 'compact'
-        },
-        files: [{
-          expand: true,
-          cwd: 'lib/sass',
-          src: '**/*.scss',
-          dest: 'css',
-          ext: '.css'
-        }]
-      },
-      dist: {
-        options: {
-          style: 'compressed',
-          banner: '<%= banner %>'
-        },
-        files: [{
-          expand: true,
-          cwd: 'lib/sass',
-          src: '**/*.scss',
-          dest: 'dist/css',
-          ext: '.min.css'
-        }]
-      }
-    },
-    autoprefixer: {
-      dev: {
-        src: ['css/**/*.css']
-      }
-    },
+
     watch: {
       gruntfile: {
         files: '<%= jshint.gruntfile.src %>',

@@ -1,5 +1,8 @@
-/*! handyCAPSSLider - v0.1.0 - 2014-05-06
-* Copyright (c) 2014 handyCAPS; Licensed MIT */
+
+/**
+ * Create sliders with minimal effort and maximum configurability
+ * @param {String} cont Optional classname for container element
+ */
 function HandyCAPSSlider(cont)  {
 
 	/**
@@ -12,6 +15,14 @@ function HandyCAPSSlider(cont)  {
 		// Set local var to id of interval, so I can stop it
 		this.timerid = window.setInterval(cb.bind(this), time);
 
+	};
+
+	this.startSlides = function() {
+		this.every(this.getSlideDur() * 1000, this.moveSlides);
+	};
+
+	this.stopSlides = function() {
+		window.clearInterval(this.timerid);
 	};
 
 	/**
@@ -126,25 +137,16 @@ function HandyCAPSSlider(cont)  {
 	};
 
 	/**
-	 * Get all the slides
-	 * @return {Array} Nodelist of all slides
+	 * Get a nodelist of local variables
+	 * @param  {String} el Property to get nodelist for
+	 * @return {Array}    Array of DOM nodes
 	 */
-	this.getItems = function() {
-		return document.querySelectorAll(this.container + ' ' + this.item);
+	this.get = function(el) {
+		return document.querySelectorAll(this[el]);
 	};
 
 	this.targetBullets = function() {
 		return document.querySelectorAll(this.classify(this.bulClass));
-	};
-
-	/**
-	 * Count the number of slides
-	 * @return {Int} Number of slides for this slider
-	 */
-	this.countItems = function() {
-		var items = this.getItems();
-
-		return items.length;
 	};
 
 	/**
@@ -166,8 +168,7 @@ function HandyCAPSSlider(cont)  {
 	 * @return {String} A set of html elements
 	 */
 	this.getBullets = function() {
-		var slideCount = this.countItems(),
-		allBullets = '',
+		var allBullets = '',
 		bullet = "<div class='" + this.bulClass + "' style='display: inline-block; border-radius: 50%; cursor: pointer; transition: 0.3s " + parseInt(this.getSeconds(this.animDur) - 0.3, 10) + "s;";
 		bullet += "margin: 0 " + (parseInt(this.bulSize, 10) / 4) + 'px;';
 		bullet += "width: " + this.bulSize + ';';
@@ -175,7 +176,7 @@ function HandyCAPSSlider(cont)  {
 		bullet += " background-color: " + this.bulColor + ';';
 		bullet += "'></div>";
 
-		for (var i = 0; i < slideCount; i++) {
+		for (var i = 0; i < this.itemCount; i++) {
 			allBullets += bullet;
 		}
 
@@ -189,7 +190,7 @@ function HandyCAPSSlider(cont)  {
 	this.placeBullets = function() {
 		var bulletHolster = document.createElement("div"),
 		bullets = this.getBullets(),
-		target = document.querySelectorAll(this.container)[0];
+		target = this.get('container')[0];
 
 		bulletHolster.className = 'bullet-holster';
 		var bs = bulletHolster.style;
@@ -199,9 +200,7 @@ function HandyCAPSSlider(cont)  {
 
 		target.appendChild(bulletHolster);
 
-		var holsters = document.querySelectorAll(this.container + ' .bullet-holster');
-
-		holsters[0].innerHTML = bullets;
+		bulletHolster.innerHTML = bullets;
 
 	};
 
@@ -216,6 +215,9 @@ function HandyCAPSSlider(cont)  {
 		// The bullets all have a numbered classname
 		bulNum = parseInt(clickedBul.className.replace(/[^0-9]/g, ''), 10);
 
+		// Stop the animation
+		this.stopSlides();
+
 		// Highlight the clicked bullet
 		clickedBul.style.backgroundColor = this.bulAltCol;
 		// Reset styling on bullet we're moving away from
@@ -226,6 +228,8 @@ function HandyCAPSSlider(cont)  {
 		this.goToSlide();
 		// Bump the global itterator
 		this.i++;
+		// Restart the slider
+		this.startSlides();
 	};
 
 	/**
@@ -254,11 +258,65 @@ function HandyCAPSSlider(cont)  {
 	};
 
 	/**
-	 * Get the total time for each itteration
+	 * Get the total time for each iteration
 	 * @return {Float} Total time each slide is visible including transition
 	 */
 	this.getSlideDur = function() {
 		return this.getSeconds(this.slideDur) + this.getSeconds(this.animDur);
+	};
+
+	this.clone = function(nodes) {
+		var elems = document.querySelectorAll(nodes),
+		newNode;
+
+		if (this.c < elems.length) {
+			newNode = elems[this.c].cloneNode();
+			this.c++;
+			return newNode;
+		}
+
+		return false;
+
+	};
+
+	this.minies = function() {
+		var miniJack = document.createElement('div'),
+		imgs;
+		miniJack.className = 'miniJack';
+
+		while (imgs = this.clone(this.item + ' img')) {
+			miniJack.appendChild(imgs);
+		}
+
+		this.get('container')[0].appendChild(miniJack);
+
+		miniJack.setAttribute('style', 'white-space: nowrap');
+
+		var images = miniJack.children,
+		width = parseInt(window.getComputedStyle(miniJack).width, 10) / this.itemCount;
+
+		for (var i = 0; i < images.length; i++) {
+			images[i].className = 'mini' + i;
+			images[i].setAttribute('style', 'width: ' + width + 'px; cursor: pointer');
+			images[i].addEventListener('click', this.miniCb.bind(this));
+		}
+	};
+
+	this.miniCb = function(event) {
+		var miniNum = parseInt(event.currentTarget.className.replace(/[^0-9]/g, ''), 10),
+		bullets = this.targetBullets();
+
+		// Stop the slides
+		this.stopSlides();
+
+		bullets[miniNum].style.backgroundColor = this.bulAltCol;
+		bullets[this.i].style.backgroundColor = this.bulColor;
+
+		this.i = miniNum - 1;
+		this.goToSlide();
+		this.i++;
+		// Restart the slides
+		this.startSlides();
 	};
 
 	/**
@@ -351,7 +409,7 @@ function HandyCAPSSlider(cont)  {
 	 */
 	this.goToSlide = function() {
 		var perc = this.i + 1,
-		slides = this.getItems();
+		slides = this.get('item');
 
 		for (var i = 0; i < slides.length; i++){
 				slides[i].style.transform = this.getTransformString(perc);
@@ -360,24 +418,23 @@ function HandyCAPSSlider(cont)  {
 	};
 
 	/**
-	 * Callback for setInterval. Fires when proper conditions are met
+	 * Callback for setInterval. Checks iterator, then returns or slides
 	 * @return {void} [description]
 	 */
 	this.moveSlides = function () {
-		var numItems = this.countItems(),
-		slide = this.getItems(),
+		var slide = this.get('item'),
 		bullets = this.targetBullets();
 
 		// If we're doing bullets, style the one we're sliding away from back to original
 		if(this.bullets) { bullets[this.i].style.backgroundColor = this.bulColor;}
 
 		// If every slide has been shown, rinse and repeat
-		if (this.i >= numItems - 1) {
-			// Reset the global itterator
+		if (this.i >= this.itemCount - 1) {
+			// Reset the global iterator
 			this.i = 0;
 
 			// Reset all transforms of the slides to 0
-			for (var i = 0; i < numItems; i++) {
+			for (var i = 0; i < this.itemCount; i++) {
 				slide[i].style.transform = this.getTransformString(0);
 				slide[i].style.webkitTransform = this.getTransformString(0);
 			}
@@ -395,18 +452,18 @@ function HandyCAPSSlider(cont)  {
 		// Adjust styling for each slide
 		this.goToSlide();
 
-		// Raise the global itterator
+		// Raise the global iterator
 		this.i++;
 	};
 
 	// To pause on hover, clear the interval
 	this.pauseCb = function() {
-		window.clearInterval(this.timerid);
+		this.stopSlides();
 	};
 
 	// To restart, set a new interval
 	this.resumeCb = function() {
-		this.every(this.getSlideDur() * 1000, this.moveSlides);
+		this.startSlides();
 	};
 
 	/**
@@ -414,10 +471,9 @@ function HandyCAPSSlider(cont)  {
 	 * @return {void}
 	 */
 	this.pauseOnHover = function() {
-		var slides = this.getItems(),
-		count = this.countItems();
+		var slides = this.get('item');
 
-		for (var i = 0; i < count; i++) {
+		for (var i = 0; i < this.itemCount; i++) {
 			slides[i].addEventListener('mouseenter', this.pauseCb.bind(this));
 			slides[i].addEventListener('mouseleave', this.resumeCb.bind(this));
 		}
@@ -466,11 +522,16 @@ function HandyCAPSSlider(cont)  {
 		this.bulClass		= params.bulletClass	|| 'bullet';
 		this.bulBright	= params.bulletBright	|| -30;
 		this.bulAltCol	= params.bulAltColor	|| this.brightness(this.bulBright, this.bulColor);
+
+		this.doMinies		= params.minies === undefined || params.minies === true ? true : false;
+
 		// Placing basic css in the head
 		this.placeHeadStyles();
 
 		// This value represents the index of the slide being shown
 		this.i = 0;
+		this.c = 0;
+		this.itemCount = this.get('item').length;
 
 		// Placing and styling bullets. Defaults to true
 		if (this.bullets) {
@@ -484,8 +545,12 @@ function HandyCAPSSlider(cont)  {
 		// Pauses the animation on mouse over. Defaults to true
 		if (this.pauseHover) {this.pauseOnHover();}
 
+		if (this.doMinies) {this.minies();}
+
 		// Get the show rolling
-		this.every(this.getSlideDur() * 1000, this.moveSlides);
+		this.startSlides();
+
+		// console.log(this.clone(this.item + ' img'));
 
 	};
 

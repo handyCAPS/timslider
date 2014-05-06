@@ -9,6 +9,11 @@ A slider made for practice, turned out pretty useful. Simply add classes to the 
 Installation
 ------------
 
+Using bower: `bower install --save handyCAPSSLider`
+This is linked to the 'timslider' repo, because bower has some growing up to do.
+
+Not using bower:
+
 1. Download the js folder or clone the repo. There's a minified and full version.
 2. Link to the script in your page.
 3. Add classes to the desired items. Defaults are:
@@ -80,6 +85,12 @@ Type `Boolean`
 Default `true`
 
 Stops the animation when the user hovers over a slide. Animation resumes on mouseout. Can be disabled with the value `false` or `'nibble'`
+
+#### minies
+Type `Booleamn`
+Deafult `true`
+
+Shows minitures of all images in the slider. Can be disabled with the value  `false` or `'bacon'`
 
 #### slideDur
 Type `Float | String`

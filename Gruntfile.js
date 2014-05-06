@@ -12,10 +12,6 @@ module.exports = function(grunt) {
       ' Licensed <%= _.pluck(pkg.licenses, "type").join(", ") %> */\n',
     // Task configuration.
     concat: {
-      options: {
-        banner: '<%= banner %>',
-        stripBanners: true
-      },
       dist: {
         src: ['lib/js/<%= pkg.name %>.js'],
         dest: 'js/<%= pkg.name %>.js'

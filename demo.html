@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>handyCAPSSlider</title>
+	<style>
+	/*This is just to keep the slider in the middle and not to big*/
+	#outerWrap {
+		max-width: 600px;
+		margin: 0 auto;
+		font-family: sans-serif;
+	}
+	</style>
+</head>
+<body>
+
+<div id="outerWrap">
+
+	<header>
+		<h1>handyCAPSSlider</h1>
+	</header>
+
+	<!-- Container can be any block level element with the default or custom class applied -->
+	<div class="slider-container">
+			<!-- You can have as many slider items as you want -->
+			<div class="slider-item">
+				<!-- Any image directly descendant from the item is blown up to 100% -->
+				<img src="http://placekitten.com/500/500" alt="">
+				<div class="slider-caption">
+					<!-- H3's and H2's have styling apllied to them in the header -->
+					<h3>Header 1</h3>
+					<!-- Caption text should be in p tags. The bottom margin will be removed -->
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Natus, vero dolores nemo velit distinctio unde delectus libero iste tenetur. Sit et consequatur veniam rerum neque obcaecati omnis recusandae accusamus reprehenderit.</p>
+				</div>
+			</div>
+
+			<div class="slider-item">
+				<img src="http://fillmurray.com/600/600" alt="">
+				<div class="slider-caption">
+					<h3>Header 2</h3>
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia, quos, dicta provident quisquam a hic deserunt libero delectus veritatis porro tempore voluptates fugiat natus eligendi illum cupiditate sed sapiente error.</p>
+				</div>
+			</div>
+
+			<div class="slider-item">
+				<img src="http://placecage.com/700/700" alt="">
+				<div class="slider-caption">
+					<h3>Header 3</h3>
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Provident, dolorum, ea, minus, placeat temporibus sapiente vitae officia dolorem aliquid similique possimus ex praesentium dignissimos nobis odio corporis hic soluta laborum.</p>
+				</div>
+			</div>
+
+			<div class="slider-item">
+				<img src="http://placekitten.com/600/600" alt="">
+				<div class="slider-caption">
+					<h3>Header 4</h3>
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus assumenda labore hic beatae culpa nesciunt. Rem, omnis, impedit, ipsa, nulla sunt est laboriosam consectetur itaque earum aspernatur modi quidem perferendis!</p>
+				</div>
+			</div>
+
+			<div class="slider-item">
+				<img src="http://fillmurray.com/900/900" alt="">
+				<div class="slider-caption">
+					<h3>Header 5</h3>
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Neque, officia quis incidunt eligendi cupiditate! Voluptate, placeat itaque odit fugiat consequuntur dicta maxime! Tempore quae quasi quos a repudiandae id accusamus.</p>
+				</div>
+			</div>
+
+	</div><!--  end .slider-container  -->
+
+</div>
+
+<!-- Call the script -->
+<script src="js/handyCAPSSlider.js"></script>
+<script>
+	// A single line is enough to get her started
+	handyCAPSSlider.init();
+</script>
+
+</body>
+</html>

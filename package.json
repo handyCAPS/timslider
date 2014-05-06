@@ -1,22 +1,20 @@
 {
-  "name": "timslider",
+  "name": "handyCAPSSLider",
+  "version": "0.1.0",
+  "description": "Pure js slider",
+  "main": "index.html",
   "author": {
     "name": "handyCAPS"
     },
-  "version": "0.1.0",
-  "description": "A vanilla js slider using css animations",
-  "main": "index.html",
-  "dependencies": {
-    "grunt": "~0.4.4",
-    "grunt-contrib-concat": "~0.4.0"
-  },
+  "licenses": [{
+    "type": "MIT"
+    }],
   "devDependencies": {
+    "grunt": "~0.4.4",
+    "grunt-contrib-concat": "~0.4.0",
     "grunt-contrib-uglify": "~0.4.0",
     "grunt-contrib-jshint": "~0.10.0",
     "grunt-contrib-watch": "~0.6.1",
     "load-grunt-tasks": "~0.4.0"
-  },
-  "licenses": [{
-    "type":"BSD-2-Clause"
-    }]
+  }
 }

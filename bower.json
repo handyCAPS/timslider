@@ -1,21 +1,24 @@
 {
-  "name": "timslider",
-  "version": "0.1.0",
+  "name": "handyCAPSSlider",
+  "version": "1.0.0",
+  "homepage": "https://github.com/handyCAPS/timslider",
   "authors": [
-    "handyCAPS"
+    "Tim Doppenberg <info@timdoppenberg.nl>"
   ],
-  "description": "A vanilla js slider. Unfinnished",
+  "description": "A plain javascript slider",
+  "main": "handyCAPSSlider.js",
   "keywords": [
-    "slider"
+    "slider",
+    "no jquery",
+    "vanilla js"
   ],
   "license": "MIT",
   "ignore": [
-    "**/.*",
-    "**/*.html",
     "node_modules",
-    "bower_components"
     "lib",
     "Gruntfile.js",
-    "package.json"
+    "package.json",
+    ".**/*",
+    ".*"
   ]
 }

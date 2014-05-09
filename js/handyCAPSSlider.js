@@ -5,6 +5,8 @@
  */
 function HandyCAPSSlider(cont)  {
 
+	"use strict";
+
 	/**
 	 * Triggers a callback at set intervals
 	 * @param  {Int}  time  Time between steps in milliseconds
@@ -234,14 +236,15 @@ function HandyCAPSSlider(cont)  {
 	this.bulletCb = function(event) {
 		var allBullets = this.targetBullets(),
 		clickedBul = event.currentTarget,
-		minis = document.querySelector('.miniJack').children,
+
 		// The bullets all have a numbered classname
 		bulNum = parseInt(clickedBul.className.replace(/[^0-9]/g, ''), 10);
 
 		// Stop the animation
 		this.stopSlides();
 
-		if (this.blowMinis) {
+		if (this.doMinis && this.blowMinis) {
+			var minis = document.querySelector('.miniJack').children;
 
 			this.hightlightMinis(bulNum - 1);
 
@@ -317,7 +320,7 @@ function HandyCAPSSlider(cont)  {
 
 		miniJack.className = 'miniJack';
 
-		while (imgs = this.clone(this.item + ' img')) {
+		while (imgs = this.clone(this.container + ' ' + this.item + ' img')) {
 			miniJack.appendChild(imgs);
 		}
 
@@ -446,7 +449,7 @@ function HandyCAPSSlider(cont)  {
 	 */
 	this.goToSlide = function() {
 		var perc = this.i + 1,
-		slides = this.get('item');
+		slides = document.querySelectorAll(this.container + ' ' + this.item);
 
 		for (var i = 0; i < slides.length; i++){
 				slides[i].style.transform = this.getTransformString(perc);
@@ -459,14 +462,13 @@ function HandyCAPSSlider(cont)  {
 	 * @return {void} [description]
 	 */
 	this.moveSlides = function () {
-		var slide = this.get('item');
 
 		// If we're doing bullets, style the one we're sliding away from back to original
 		if (this.bullets) {
 			this.resetBul(this.i);
 		}
 
-		if (this.blowMinis) {
+		if (this.doMinis && this.blowMinis) {
 			this.resetMinis(this.i);
 		}
 
@@ -482,7 +484,7 @@ function HandyCAPSSlider(cont)  {
 			// Highlight the first bullet
 			if (this.bullets) {this.highlightBul(0);}
 
-			if (this.blowMinis) {this.hightlightMinis(0);}
+			if (this.doMinis && this.blowMinis) {this.hightlightMinis(0);}
 
 			// Bail out early
 			return;
@@ -491,7 +493,7 @@ function HandyCAPSSlider(cont)  {
 		// Highlight the bullet we're sliding to
 		if (this.bullets) {this.highlightBul(this.i + 1);}
 
-		if (this.blowMinis) {this.hightlightMinis(this.i + 1);}
+		if (this.doMinis && this.blowMinis) {this.hightlightMinis(this.i + 1);}
 
 		// Adjust styling for each slide
 		this.goToSlide();
@@ -515,7 +517,7 @@ function HandyCAPSSlider(cont)  {
 	 * @return {void}
 	 */
 	this.pauseOnHover = function() {
-		var slides = this.get('item');
+		var slides = document.querySelectorAll(this.container + ' ' + ' ' + this.item);
 
 		for (var i = 0; i < this.itemCount; i++) {
 			slides[i].addEventListener('mouseenter', this.pauseCb.bind(this));
@@ -576,7 +578,7 @@ function HandyCAPSSlider(cont)  {
 		// This value represents the index of the slide being shown
 		this.i = 0;
 		this.c = 0;
-		this.itemCount = this.get('item').length;
+		this.itemCount = document.querySelectorAll(this.container + ' ' + this.item).length;
 
 		// Placing and styling bullets. Defaults to true
 		if (this.bullets) {

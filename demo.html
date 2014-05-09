@@ -10,6 +10,16 @@
 		margin: 0 auto;
 		font-family: sans-serif;
 	}
+	#animSwitch {
+		display: inline-block;
+		background-color: #bdc3c7;
+		color: #FFF;
+		margin-bottom: 12px;
+		padding: 4px 8px;
+		text-shadow: 0px 0.3px 0.2px #9C9C9C;
+		font-weight: bold;
+		cursor: pointer;
+	}
 	</style>
 </head>
 <body>
@@ -19,6 +29,8 @@
 	<header>
 		<h1>handyCAPSSlider</h1>
 	</header>
+
+	<div id="animSwitch">Switch animation</div>
 
 	<!-- Container can be any block level element with the default or custom class applied -->
 	<div class="slider-container">
@@ -68,6 +80,18 @@
 
 	</div><!--  end .slider-container  -->
 
+	<hr>
+
+	<h1>Slider Two</h1>
+
+	<div class="second-slider">
+			<div class="slider-item"><img src="http://placecage.com/300/200" alt=""></div>
+			<div class="slider-item"><img src="http://fillmurray.com/300/200" alt=""></div>
+			<div class="slider-item"><img src="http://placecage.com/300/200" alt=""></div>
+			<div class="slider-item"><img src="http://fillmurray.com/300/200" alt=""></div>
+			<div class="slider-item"><img src="http://placekitten.com/300/200" alt=""></div>
+		</div>
+
 </div>
 
 <!-- Call the script -->
@@ -75,6 +99,13 @@
 <script>
 	// A single line is enough to get her started
 	handyCAPSSlider.init();
+
+	var secondSlider = new HandyCAPSSlider('second-slider');
+
+	secondSlider.init({
+		bullets: false,
+		minis: false
+	});
 </script>
 
 <!-- This is just to demonstrate the various animations -->

@@ -9,6 +9,16 @@
 		margin: 0 auto;
 		font-family: sans-serif;
 	}
+	#animSwitch {
+		display: inline-block;
+		background-color: #bdc3c7;
+		color: #FFF;
+		margin-bottom: 12px;
+		padding: 4px 8px;
+		text-shadow: 0px 0.3px 0.2px #9C9C9C;
+		font-weight: bold;
+		cursor: pointer;
+	}
 	</style>
 </head>
 <body>
@@ -18,6 +28,8 @@
 	<header>
 		<h1>handyCAPSSlider</h1>
 	</header>
+
+	<div id="animSwitch">Switch animation</div>
 
 	<div class="slider-container">
 
@@ -76,6 +88,28 @@
 <script src="js/handyCAPSSlider.js"></script>
 <script>
 	handyCAPSSlider.init();
+</script>
+
+<!-- This is just to demonstrate the various animations -->
+<script>
+	var types = ['normal','flip','spin','twirl'],
+	i = 0;
+	// Hit the switch to see the animation types
+	document.querySelector('#animSwitch').addEventListener('click', function() {
+		if ( i >= types.length - 1) {
+			i = 0;
+			handyCAPSSlider.animType = types[0];
+			this.innerHTML = handyCAPSSlider.animType;
+			return;
+		}
+		if (handyCAPSSlider.animType == types[i]) {
+			var nextType = parseInt(i, 10) + 1;
+			handyCAPSSlider.animType = types[nextType];
+			i++
+		}
+		this.innerHTML = handyCAPSSlider.animType;
+
+	});
 </script>
 
 </body>

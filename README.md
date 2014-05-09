@@ -1,4 +1,4 @@
-HandyCAPSSLider
+HandyCAPSSlider
 ===============
 [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
 
@@ -86,11 +86,17 @@ Default `true`
 
 Stops the animation when the user hovers over a slide. Animation resumes on mouseout. Can be disabled with the value `false` or `'nibble'`
 
-#### minies
-Type `Booleamn`
-Deafult `true`
+#### minis
+Type `Boolean`
+Default `true`
 
 Shows minitures of all images in the slider. Can be disabled with the value  `false` or `'bacon'`
+
+#### highlightMinis
+Type `Boolean`
+Default `true`
+
+If true, minis get scaled to 120% when the corresponding slide is shown.
 
 #### slideDur
 Type `Float | String`
@@ -120,7 +126,7 @@ Css animation timing function. Gives the slide a swing. Options are :
 Type `String`
 Default `'normal'`
 
-Want to annoy your visitors, but please the marketing department ? This slider has a few custom transition animations available. Options are :
+Want to annoy your visitors, but please the marketing department ? This slider has a few custom transition animations available. You can try them out from the demo.html page. Options are :
 * `'normal'` Default value. Smooth slides from right to left.
 * `'flip'` Flips each slide 360 degs top to bottom.
 * `'spin'` Spins slides around.

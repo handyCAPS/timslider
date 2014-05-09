@@ -77,5 +77,27 @@
 	handyCAPSSlider.init();
 </script>
 
+<!-- This is just to demonstrate the various animations -->
+<script>
+	var types = ['normal','flip','spin','twirl'],
+	i = 0;
+	// Hit the switch to see the animation types
+	document.querySelector('#animSwitch').addEventListener('click', function() {
+		if ( i >= types.length - 1) {
+			i = 0;
+			handyCAPSSlider.animType = types[0];
+			this.innerHTML = handyCAPSSlider.animType;
+			return;
+		}
+		if (handyCAPSSlider.animType == types[i]) {
+			var nextType = parseInt(i, 10) + 1;
+			handyCAPSSlider.animType = types[nextType];
+			i++
+		}
+		this.innerHTML = handyCAPSSlider.animType;
+
+	});
+</script>
+
 </body>
 </html>
